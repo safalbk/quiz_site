@@ -1,4 +1,4 @@
-admin
+admin carbon@333
 	nav:- 
 		report
 			time sort
