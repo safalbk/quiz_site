@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/index.css' %}">
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+</head>
+
+<body>
+   
+{% include 'quiz/navbar.html' %}
+       <div class="secondpart">
+        <div class="entercode_container">
+            <form id="code_form" autocomplete="off" action="{% url 'quiz:exam' %}" method="post">
+                {% csrf_token %}
+                <p>Enter the Name</p>
+            <input type="text" value="" name="name"></input>
+                <p>Enter the code</p>
+            <input type="text" value="" name="code"></input>
+            <div class="button">
+                <button class="button-17" type="submit" form="code_form" value="Submit">Join</button>
+
+                <!-- <input class="button-17" type="submit" value="Join"> -->
+            </div>
+    
+            </form>
+            
+           
+        
+           </div>
+       </div>
+</body>
+
+</html>
+
+

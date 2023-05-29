@@ -1,0 +1,53 @@
+admin
+	nav:- 
+		report
+			time sort
+
+		candidates
+
+			create link(auto generate) or candidate
+                email
+                uuid
+                code
+			delete candidate
+            
+		quiz
+			create quiz
+			show quiz
+		
+
+candidate
+	nav:- no nav
+		
+	pages:-
+		enter code 
+		exam
+		show result
+-----------------------------------------
+database
+
+candidate
+        is_loggedin = bool
+        uuid = text
+        code = text (8 digit number)
+        name = text
+        total qn = int
+        answered qn = int
+        skiped = int
+        time = stamp
+code
+		name
+		email
+		token
+		expired bool
+-----------------------------------------
+
+create exam ->  email quiz name -> code -> send code
+								 -> register token in code ->
+
+enter code -> check expire -> collect quiz id-> \\
+	start exam -> stam time , expire link->exam page -> result in update database
+
+
+
+

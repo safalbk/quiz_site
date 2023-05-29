@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/allquiz.css' %}">
+
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+</head>
+
+<body>
+   
+    {% include 'quiz/navbar.html' %}
+
+        
+    </section>
+    <div class="createbutton">
+        <a href="{% url 'quiz:create_quiz' %}">CREATE QUIZ</a>
+        <a href="{% url 'quiz:create_exam' %}">CREATE EXAM</a>
+    </div>
+    <div class="result_container" >
+        <table id="results">
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    questions
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            {% if all_quiz_list %}
+                {% for quiz in all_quiz_list %}
+                <tr>
+                    <td>
+                        {{ quiz.quiz_title }}
+                    </td>
+                    <td>{{ quiz.num_questions }}</td>
+                    <td>
+                        <a class="card" href="{% url 'quiz:single_quiz' quiz.id 'admin' %}">open</a>
+                    </td>
+                </tr>
+               
+    
+                {% endfor %}
+        {% else %}
+            <p>No quizzes are available.</p>
+        {% endif %}
+        </table>
+    </div>
+    
+   
+</body>
+
+</html>
+
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html id="html_delete" lang="en">
+
+<head>
+  {% load static %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'quiz/single_question.css' %}">
+
+  <meta charset="UTF-8">
+  <title>Skill Ninja</title>
+</head>
+
+<body>
+  <form id="hidden_form" action="{% url 'quiz:vote' quiz.id current_question.question_num name %}" method="post">
+    {% csrf_token %}
+      {% for choice in current_question.choice_set.all %}
+      <input type="radio" name="choice" id="input{{ choice.id }}" value="{{ choice.id }}">
+      <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+      {% endfor %}
+  
+  </form>
+
+
+  <div class="top">
+    <div class="timer">
+      <div class="container">
+        <img src="{% static 'quiz/images/circle.png' %}" alt="Snow">
+
+        <div class="centered">5</div>
+      </div>
+    </div>
+    <img id="post" src="{% static 'quiz/images/next.png' %}" alt="" class="next">
+    <!-- <button class="next">Next</button> -->
+  </div>
+  <div class="bottom">
+    <div class="question">
+      <p>{{ current_question.question_text }}</p>
+      {% if error_message %}
+      <p><strong>{{ error_message }}</strong></p>
+      {% endif %}
+      <img src="{% static 'quiz/images/code.jpg' %}" alt="" width="300px" height="200px">
+    </div>
+
+    <div class="options">
+      <ul id="q_options">
+        {% for choice in current_question.choice_set.all %}
+        <li id="{{ choice.id }}">
+          {{ choice.choice_text }}
+        </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+
+</body>
+<script defer>
+
+  // const mydata = JSON.parse(document.getElementById('gem').textContent);
+  document.getElementById("hidden_form").style.display="none";
+  // document.getElementById("csrf").value 
+  var csrftoken = '{{ csrf_token }}'
+var selected_choice=""
+  const ul = document.getElementById('q_options');
+  const listItems = ul.getElementsByTagName('li');
+  // Loop through the NodeList object.
+  for (let i = 0; i <= listItems.length - 1; i++) {
+    // console.log (listItems[i]);
+    listItems[i].addEventListener('click', () => {
+      console.log("clicked " + i);
+      console.log('{{ gem }}');
+      console.log(listItems[i].id);
+      selected_choice=listItems[i].id;
+      document.getElementById(listItems[i].id).style.backgroundColor = "#f0a82b";
+
+      for (let j = 0; j <= listItems.length - 1; j++) {
+        if(i!=j){
+          document.getElementById(listItems[j].id).style.backgroundColor = "aqua";
+
+        }
+      }
+      document.getElementById("input"+listItems[i].id).checked = true;
+
+
+
+
+    })
+  }
+  document.getElementById('post').onclick = () => {
+    console.log(document.getElementById(selected_choice).innerText,'{{ gem }}');
+    if (document.getElementById(selected_choice).innerText =='{{ gem }}')
+    {
+      document.getElementById(selected_choice).style.backgroundColor = "green";
+    }
+    else
+    {
+      document.getElementById(selected_choice).style.backgroundColor = "red";
+
+    }
+    setTimeout(()=> {
+      document.getElementById("hidden_form").submit();
+      }
+      ,3000);
+    
+
+  }
+
+</script>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/results.css' %}">
+
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+
+<body>
+    {% include 'quiz/navbar.html' %}
+
+    <div class="result_container">
+
+        <h1 class="results_title">Results</h1>
+        <p class="correct_to_total"> Total marks :  {{ num_correct }}/{{ total_questions }}</p>
+
+        {% if accuracy_over_75 %}
+            <p class="accuracy_good">{{ accuracy_formatted }}</p>
+            <p>Congragulations</p>
+
+
+
+        {% else %}
+            <p class="accuracy_bad">{{ accuracy_formatted }}</p>
+            <p>Better Luck Next Time :)</p>
+        {% endif %}
+    
+    </div>
+   
+</body>
+</html>

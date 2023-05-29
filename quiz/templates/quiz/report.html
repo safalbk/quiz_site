@@ -1,0 +1,41 @@
+{% load static %}
+{% include 'quiz/navbar.html' %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/report.css' %}">
+
+</head>
+<table id="results">
+    <tr>
+        <td>
+            Name
+        </td>
+        <td>
+            Quiz Name
+        </td>
+        <td>
+            Correct Answer
+
+        </td>
+
+        <td>
+            Total questions
+        </td>
+    </tr>
+    {% if candidates %}
+        {% for person in candidates %}
+        <tr>
+            <td>
+                {{ person.name }}
+            </td>
+            <td>{{ person.quiz_name }}</td>
+            <td>{{ person.correct_qn }}</td>
+            <td>{{ person.total_qn }}</td>
+           
+        </tr>
+       
+
+        {% endfor %}
+{% else %}
+    <p>No quizzes are available.</p>
+{% endif %}
+</table>

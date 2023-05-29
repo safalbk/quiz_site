@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Ninja</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/create_exam.css' %}">
+
+</head>
+<body>
+    {% include 'quiz/navbar.html' %}
+
+   <div class="container">
+
+    <form id="create_exam" autocomplete="on" action="{% url 'quiz:register_exam'%}" method="post">
+        {% csrf_token %}
+
+        <label for="fname">Enter Name:</label>
+        <input type="text" id="name" name="name">
+
+        <label for="fmail">Enter Mail:</label>
+         <input type="text" id="mailid" name="mailid">
+
+        <label for="cars">Choose a Quiz:</label>
+        <select id="quiz" name="quizid">
+
+            {% if all_quiz_list %}
+                {% for quiz in all_quiz_list %}
+           
+            <option value="{{quiz.id}}">{{ quiz.quiz_title }}</option>
+                {% endfor %}
+            {% else %}
+                <p>No quizzes are available.</p>
+            {% endif %}
+
+        </select>
+        <button  type="submit" form="create_exam" value="Submit">create exam</button>
+      </form>
+   </div>
+</body>
+</html>
+

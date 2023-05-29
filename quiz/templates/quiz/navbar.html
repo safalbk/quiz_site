@@ -1,0 +1,15 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/navbar.css' %}">
+
+
+</head>
+<section class="topnav">
+    <a href="">Bolgatty</a>
+    <a href="/">Home</a>
+    <a href="{% url 'quiz:report' %}">Report</a>
+    <a href="{% url 'quiz:allquiz' %}">quiz</a>
+    <a href="">admin</a>
+    <a href="">exam</a>
+    
+</section>
