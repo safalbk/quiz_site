@@ -4,13 +4,17 @@
     {% load static %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'quiz/results.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/navbar.css' %}">
 
     <meta charset="UTF-8">
     <title>Results</title>
 </head>
 
 <body>
-    {% include 'quiz/navbar.html' %}
+    <section class="topnav">
+        <a href="/">Home</a>
+       
+    </section>
 
     <div class="result_container">
 

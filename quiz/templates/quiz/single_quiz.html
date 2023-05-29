@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    {% include 'quiz/navbar.html' %}
 
 
     <div class="full_container">
@@ -20,7 +19,7 @@
    
         <h4 class="num_questions">{{ num_questions }} Questions</h4>
         <div class="home_button">
-            <a  href="{% url 'quiz:candidate_update' quizid 1 token %}">Start candidate</a>
+            <a  href="{% url 'quiz:candidate_update' quizid 1 token %}">Start Quiz</a>
 
             
         </div>
