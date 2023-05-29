@@ -46,7 +46,8 @@ def single_quiz(request, quiz_id,token):
         context = {
             "quiz": quiz,
             "num_questions": num_questions,
-            "token":token
+            "token":token,
+              "quizid":quiz_id,
         }
 
         return render(request, "quiz/single_quiz.html", context)
@@ -72,6 +73,8 @@ def single_quiz(request, quiz_id,token):
         context = {
             "quiz": quiz,
             "num_questions": num_questions,
+            "token":token,
+            "quizid":quiz_id,
         }
 
         return render(request, "quiz/single_quiz.html", context)
@@ -336,6 +339,7 @@ def code_to_exam(request):
         if(Code.objects.filter(token=token).exists()):
             cc=Code.objects.get(token=token)
             quizid=cc.quizid
+            print(quizid)
             # cc.delete()
         
             return HttpResponseRedirect(reverse("quiz:single_quiz", args=(quizid,token)))
@@ -410,8 +414,8 @@ def candidate_update(request,quiz_id,question_id,token):
     q=Quiz.objects.get(id=quiz_id)
     quiz_name=q.quiz_title
     obj=Candidate(email=email,name=name,quiz_name=quiz_name)
-
     obj.save()
+    cc.delete()
     return HttpResponseRedirect(reverse("quiz:single_question", args=(quiz_id,1,name)))
 
 

@@ -17,12 +17,12 @@
     <div class="full_container">
        
         <h1 class="quiz_title">{{ quiz.quiz_title }}</h1>
-
+   
         <h4 class="num_questions">{{ num_questions }} Questions</h4>
         <div class="home_button">
-            <a  href="{% url 'quiz:candidate_update' quiz.id 1 token %}">Start candidate</a>
+            <a  href="{% url 'quiz:candidate_update' quizid 1 token %}">Start candidate</a>
 
-            candidate_update
+            
         </div>
 
 
